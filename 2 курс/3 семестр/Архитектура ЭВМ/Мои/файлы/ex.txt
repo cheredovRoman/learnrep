@@ -1,0 +1,56 @@
+jmp begin
+.org 10
+MB:.ds 10
+N: .ds 1
+A: .ds 1
+Y: .ds 1
+B: .ds1
+X: .ds1
+S: .ds1
+begin: in 0
+cmi a,1
+jnp exit
+stor a,N
+sbi a,1
+stor a,B
+load a,N
+mvi b,0
+inp: push a
+in 1
+stor a,MB(b)
+adi b,1
+pop a
+loop a,inp
+in 3
+stor a,A
+load a,N
+Cycl2: push a
+load a,N
+Cycl1:push a
+load b,B
+load a,MB(b)
+mov b,a
+mur a,b
+adm b,X
+Stor b,X
+pop a
+loop a,Cycl1
+pop a
+stor a,S
+load a,A
+mum a,S
+adr a,b
+mui a,1
+dvm a,S
+adm a,Y
+stor a,Y
+load b,B
+sbi b,1
+stor b,B
+load a,S
+loop a,Cycl2
+exit: load a,Y
+out 5
+stop
+
+

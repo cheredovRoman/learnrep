@@ -1,0 +1,48 @@
+
+mvi a,1
+stor a,ONE
+in 0	;Y
+push a	;(3)
+in 1	;X
+push a	;(2)
+in 2	;N
+push a	;(1)
+call POWER;
+load a,5(sp)
+out 5
+stop 
+
+Y: .ds 1
+X: .ds 1
+N: .ds 1
+zp: .ds 1 
+ONE: .ds 1
+P: .ds 1
+POWER:push a
+load b,4(sp)
+load a,5(sp)
+mur a,a;
+xchg;
+stor a,4(sp)
+mvi b,1
+load a,3(sp)
+CYCL: push a
+mum a,5(sp)
+pop a
+loop a,CYCL
+stor b,Y
+load a,3(sp)
+mvi b,1
+CYCLA:push a
+mum a,6(sp)
+pop a
+loop a,CYCLA
+load a,Y
+sbr a,b
+adm a,ONE
+mov b,a
+stor b,1(sp)
+push b;
+pop b;
+pop b;
+ret;

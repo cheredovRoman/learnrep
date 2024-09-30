@@ -1,0 +1,80 @@
+    1  00  b8  26  jmp begin
+    2  02  00      .org 10
+    3  10  00  00  MB:.ds 10
+           00  00
+           00  00
+           00  00
+           00  00
+           00  00
+           00  00
+           00  00
+    4  20  00      N: .ds 1
+    5  21  00      A: .ds 1
+    6  22  00      Y: .ds 1
+    7  23  00      B: .ds1
+    8  24  00      X: .ds1
+    9  25  00      S: .ds1
+   10  26  40      begin: in 0
+   11  27  b0  01  cmi a,1
+   12  29  bf  6e  jnp exit
+   13  2b  18  20  stor a,N
+   14  2d  78  01  sbi a,1
+   15  2f  18  23  stor a,B
+   16  31  10  20  load a,N
+   17  33  31  00  mvi b,0
+   18  35  20      inp: push a
+   19  36  41      in 1
+   20  37  1c  50  stor a,MB(b)
+   21  39  61  01  adi b,1
+   22  3b  28      pop a
+   23  3c  e0  35  loop a,inp
+   24  3e  43      in 3
+   25  3f  18  21  stor a,A
+   26  41  10  20  load a,N
+   27  43  20      Cycl2: push a
+   28  44  10  20  load a,N
+   29  46  20      Cycl1:push a
+   30  47  11  23  load b,B
+   31  49  14  50  load a,MB(b)
+   32  4b  0a      mov b,a
+   33  4c  81      mur a,b
+   34  4d  59  24  adm b,X
+   35  4f  19  24  Stor b,X
+   36  51  28      pop a
+   37  52  e0  46  loop a,Cycl1
+   38  54  28      pop a
+   39  55  18  25  stor a,S
+   40  57  10  21  load a,A
+   41  59  88  25  mum a,S
+   42  5b  51      adr a,b
+   43  5c  90  01  mui a,1
+   44  5e  98  25  dvm a,S
+   45  60  58  22  adm a,Y
+   46  62  18  22  stor a,Y
+   47  64  11  23  load b,B
+   48  66  79  01  sbi b,1
+   49  68  19  23  stor b,B
+   50  6a  10  25  load a,S
+   51  6c  e0  43  loop a,Cycl2
+   52  6e  10  22  exit: load a,Y
+   53  70  4d      out 5
+   54  71  f8      stop
+
+    ***** Таблица перекрестных ссылок *****
+  имя     определение     ссылки
+
+ Y        22              6f  63  61                                           
+ X        24              50  4e                                               
+ S        25              6b  5f  5a  56                                       
+ N        20              45  42  32  2c                                       
+ MB       10              4a  38                                               
+ INP      35              3d                                                   
+ EXIT     6e              2a                                                   
+ CYCL2    43              6d                                                   
+ CYCL1    46              53                                                   
+ BEGIN    26              1                                                    
+ B        23              69  65  48  30                                       
+ A        21              58  40                                               
+
+  **** Не обнаружено ошибок. Успешное завершение ****
+

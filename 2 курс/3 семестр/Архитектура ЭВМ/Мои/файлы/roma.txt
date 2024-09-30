@@ -1,0 +1,69 @@
+in 0
+stor a, N
+in 1
+stor a, X
+in 2
+stor a, Y
+
+load a, Y
+stor a, A
+load b, X
+mur a, b
+stor b, Z
+call power
+load b, REZ
+stor b, F
+load b, X
+sbi b, 1
+stor b, Z
+call power
+load b, F
+sbm b, REZ
+stor b, F
+load b, X
+stor b, Z
+call power
+load a, F
+adm a, REZ
+out 7
+stop
+X: .ds 1
+Y: .ds 1
+N: .ds 1
+B: .ds 1
+A: .ds 1
+Z: .ds 1
+REZ: .ds 1
+F: .ds 1
+
+step: push a
+push b
+load a, N
+mvi b, 1
+cycl1: push a
+mum a, B
+pop a
+loop a, cycl1
+stor b, REZ
+pop b
+pop a
+ret
+
+power: push a
+push b
+load a, Z
+stor a, B
+call step
+load b, REZ
+load a, A
+stor a, B
+mur a, a
+call step
+load a, REZ
+sbr b, a
+adi b, 1
+stor b, REZ
+pop b
+pop a
+ret
+.end

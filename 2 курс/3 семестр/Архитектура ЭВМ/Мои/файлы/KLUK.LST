@@ -1,0 +1,57 @@
+    1  00  40      in 0;
+    2  01  20      push a;
+    3  02  41      in 1; 
+    4  03  20      push a;
+    5  04  c0  28  call STEP;
+    6  06  15  82  load b,2(sp);
+    7  08  28      pop a;
+    8  09  28      pop a;
+    9  0a  42      in 2; 
+   10  0b  20      push a;
+   11  0c  43      in 3; 
+   12  0d  20      push a;
+   13  0e  c0  28  call STEP; 
+   14  10  28      pop a; 
+   15  11  28      pop a;
+   16  12  20      push a;
+   17  13  c0  37  call POWER; 
+   18  15  29      pop b;
+   19  16  18  27  stor a,X;
+   20  18  44      in 4;
+   21  19  0a      mov b,a;
+   22  1a  21      push b; 
+   23  1b  45      in 5; 
+   24  1c  20      push a; 
+   25  1d  c0  37  call POWER;
+   26  1f  29      pop b;
+   27  20  29      pop b;
+   28  21  11  27  load b,X;
+   29  23  58  27  adm a,X;
+   30  25  4e      out 6;
+   31  26  f8      Stop; 
+   32  27  00      x: .ds 1;
+   33  28  21      STEP: push b;
+   34  29  31  01  mvi b,1;
+   35  2b  14  83  load a,3(sp) 
+   36  2d  20      CYCL:push a; 
+   37  2e  8c  85  mum a,5(sp); 
+   38  30  28      pop a; 
+   39  31  e0  2d  LOOP a,CYCL;
+   40  33  1d  84  stor b,4(sp);
+   41  35  29      pop b; 
+   42  36  c8      ret;
+   43  37  90  01  POWER: mui a,1;
+   44  39  9c  82  dvm a,2(sp);
+   45  3b  38      xchg;
+   46  3c  c8      ret;
+
+    ***** Таблица перекрестных ссылок *****
+  имя     определение     ссылки
+
+ X        27              24  22  17                                           
+ STEP     28              f   5                                                
+ POWER    37              1e  14                                               
+ CYCL     2d              32                                                   
+
+  **** Не обнаружено ошибок. Успешное завершение ****
+

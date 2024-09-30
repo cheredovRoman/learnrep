@@ -1,0 +1,91 @@
+push a
+in 0
+stor a, N
+in 1
+stor a, X
+in 2
+stor a, Y
+load b, X
+mur a, b
+load a, Y
+push a
+push b
+call power
+pop b
+pop b
+pop a
+stor a, fst
+mvi a, 0
+push a
+load a, Y
+load b, X
+sbi b, 1
+push a
+push b
+call power
+pop b
+pop b
+pop b
+load a, fst
+sbr a, b
+stor a, fst
+mvi a, 0
+push a
+load a, Y
+load b, X
+push a
+push b
+call power
+pop a
+pop a
+pop a
+load b, fst
+adr a, b
+out 7
+stop
+X: .ds 1
+Y: .ds 1
+N: .ds 1
+fst: .ds 1
+
+step: load b, 2(sp)
+load a, 3(sp)
+sbi a, 1
+stor b, mn
+cycl1: push a
+mum a, mn
+pop a
+loop a, cycl1
+stor b, 4(sp)
+ret
+mn: .ds 1
+
+power: load b, 2(sp)
+mvi a, 0
+push a
+load a, N
+push a
+push b
+call step
+pop a
+pop a
+pop b
+mum a, 3(sp)
+stor b, sec
+load b, 3(sp)
+mvi a, 0
+push a
+load a, N
+push a
+push b
+call step
+pop a
+pop a
+pop b
+load a, sec
+sbr a, b
+adi a, 1
+stor a, 4(sp)
+ret
+sec: .ds 1
+.end

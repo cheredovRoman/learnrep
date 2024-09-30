@@ -1,0 +1,104 @@
+    1  00  20      push a
+    2  01  40      in 0
+    3  02  18  42  stor a, N
+    4  04  41      in 1
+    5  05  18  40  stor a, X
+    6  07  42      in 2
+    7  08  18  41  stor a, Y
+    8  0a  11  40  load b, X
+    9  0c  81      mur a, b
+   10  0d  10  41  load a, Y
+   11  0f  20      push a
+   12  10  21      push b
+   13  11  c0  56  call power
+   14  13  29      pop b
+   15  14  29      pop b
+   16  15  28      pop a
+   17  16  18  43  stor a, fst
+   18  18  30  00  mvi a, 0
+   19  1a  20      push a
+   20  1b  10  41  load a, Y
+   21  1d  11  40  load b, X
+   22  1f  79  01  sbi b, 1
+   23  21  20      push a
+   24  22  21      push b
+   25  23  c0  56  call power
+   26  25  29      pop b
+   27  26  29      pop b
+   28  27  29      pop b
+   29  28  10  43  load a, fst
+   30  2a  69      sbr a, b
+   31  2b  18  43  stor a, fst
+   32  2d  30  00  mvi a, 0
+   33  2f  20      push a
+   34  30  10  41  load a, Y
+   35  32  11  40  load b, X
+   36  34  20      push a
+   37  35  21      push b
+   38  36  c0  56  call power
+   39  38  28      pop a
+   40  39  28      pop a
+   41  3a  28      pop a
+   42  3b  11  43  load b, fst
+   43  3d  51      adr a, b
+   44  3e  4f      out 7
+   45  3f  f8      stop
+   46  40  00      X: .ds 1
+   47  41  00      Y: .ds 1
+   48  42  00      N: .ds 1
+   49  43  00      fst: .ds 1
+   51  44  15  82  step: load b, 2(sp)
+   52  46  14  83  load a, 3(sp)
+   53  48  78  01  sbi a, 1
+   54  4a  19  55  stor b, mn
+   55  4c  20      cycl1: push a
+   56  4d  88  55  mum a, mn
+   57  4f  28      pop a
+   58  50  e0  4c  loop a, cycl1
+   59  52  1d  84  stor b, 4(sp)
+   60  54  c8      ret
+   61  55  00      mn: .ds 1
+   63  56  15  82  power: load b, 2(sp)
+   64  58  30  00  mvi a, 0
+   65  5a  20      push a
+   66  5b  10  42  load a, N
+   67  5d  20      push a
+   68  5e  21      push b
+   69  5f  c0  44  call step
+   70  61  28      pop a
+   71  62  28      pop a
+   72  63  29      pop b
+   73  64  8c  83  mum a, 3(sp)
+   74  66  19  7e  stor b, sec
+   75  68  15  83  load b, 3(sp)
+   76  6a  30  00  mvi a, 0
+   77  6c  20      push a
+   78  6d  10  42  load a, N
+   79  6f  20      push a
+   80  70  21      push b
+   81  71  c0  44  call step
+   82  73  28      pop a
+   83  74  28      pop a
+   84  75  29      pop b
+   85  76  10  7e  load a, sec
+   86  78  69      sbr a, b
+   87  79  60  01  adi a, 1
+   88  7b  1c  84  stor a, 4(sp)
+   89  7d  c8      ret
+   90  7e  00      sec: .ds 1
+
+    ***** Таблица перекрестных ссылок *****
+  имя     определение     ссылки
+
+ Y        41              31  1c  e   9                                        
+ X        40              33  1e  b   6                                        
+ STEP     44              72  60                                               
+ SEC      7e              77  67                                               
+ POWER    56              37  24  12                                           
+ N        42              6e  5c  3                                            
+ MN       55              4e  4b                                               
+ FST      43              3c  2c  29  17                                       
+ CYCL1    4c              51                                                   
+
+  **** Не обнаружено ошибок. Успешное завершение ****
+

@@ -1,0 +1,32 @@
+/*Y=P(Y,X^2)-P(Y,X-1)+P(Y,X),  где P(A,Z)=AZ^N-A^N+1*/
+
+
+in 0	;Y
+push a	;(3)
+in 1	;X
+push a	;(2)
+in 2	;N
+push a	;(1)
+call POWER
+load a,Y
+out 5
+stop 
+
+Y: .ds 1
+X: .ds 1
+N: .ds 1
+zp: .ds 1 
+
+POWER:load b,3(sp)
+load a,4(sp)
+mur a,a;
+xchg;
+stor a,zp
+mvi b,1
+load a,2(sp)
+CYCL: push a
+mum a,zp
+pop a
+loop a,CYCL
+stor b,Y
+ret
