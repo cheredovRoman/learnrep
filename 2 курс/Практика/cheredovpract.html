@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html>
+
+<title>Чередов практика</title>
+
+<h2>Модель естественного отбора</h2>
+<style type="text/css">
+	TD.leftcol {
+	 width: 825px; 
+	 vertical-align: top; 
+	}
+   </style>
+   <body> 
+	   <table width="100%" cellspacing="0" cellpadding="0">
+	<tr> 
+	 <td class="leftcol"><canvas id="canvas" width="800px" height="400px" style="border: 6px solid rgb(55, 179, 196);"></canvas></td>
+	 
+	 <td valign="top">
+	 <h1><time>0 с.</time></h1>
+	 <div style="margin-top: 10px;"> </div>
+	 <div class="row">
+ 
+	 Изначальное количество бактерий:
+	 <div class="col-md-3">
+	 <input id="fieldPopulation" type="number" placeholder="5">
+	 </div>
+ 
+	 <div style="margin-top: 10px;"></div>
+	 Максимальное количество бактерий:
+	 <div class="col-md-2">
+	 <input id="fieldMAX" type="number" placeholder="20">
+	 </div>
+ 
+	 <div style="margin-top: 10px;"></div>
+	 Кол-во хорошей еды:
+	 <div class="col-md-3">
+	 <input id="fieldGoodE" type="number" placeholder="5">
+	 </div>
+ 
+	 <div style="margin-top: 10px;"></div>
+	 Кол-во плохой еды:
+	 <div class="col-md-2">
+	 <input id="fieldBadE" type="number" placeholder="5">
+	 </div>
+	 <div style="margin-top: 10px;"></div>
+	 Кол-во смертельной еды:
+	 <div class="col-md-2">
+	 <input id="fieldDeathE" type="number" placeholder="1">
+	 </div>
+ 
+	 <div style="margin-top: 10px;"></div>
+	 <button id="strt">СТАРТ</button>
+	 <button id="stp">СТОП</button>
+	 <div style="margin-top: 15px;"></div>
+ 
+	 <button id="spd1">X1</button>
+	 <button id="spd2">X2</button>
+ 
+	 </div>
+	 </div></td>
+	</tr>
+   </table>
+  
+  </body>
+ 
+ 
+  <script type="text/javascript">
+	var canvas, ctx, W, H;
+	var h1 = document.getElementsByTagName('h1')[0];
+	var sec = 0;
+	var f = 1;
+	var test = 1;
+	var t;
+	var popLimit = 20;
+	var DefSpeed = 1;
+	var DefRad = 10;
+	var OldX=0, OldY = 0;
+	//инициализация кнопок
+	var start = document.getElementById('strt');
+	var stop = document.getElementById('stp');
+	var speed2 = document.getElementById('spd2');
+	var speed1 = document.getElementById('spd1');
+	//функция для кнопки старт
+	start.onclick = function(){
+		f = 1;
+		sec = 0;
+		DefSpeed = 1;
+		h1.textContent = sec + ' с.';
+
+		populationCount = parseInt(document.getElementById('fieldPopulation').value);
+		if ( !populationCount ) populationCount = 5; 
+
+		popLimit = parseInt(document.getElementById('fieldMAX').value);
+		if ( !popLimit ) popLimit = 20; 
+
+		GoodCount = parseInt(document.getElementById('fieldGoodE').value);
+		if ( !GoodCount ) GoodCount = 5; 
+
+		badCount = parseInt(document.getElementById('fieldBadE').value);
+		if ( !badCount ) badCount = 5; 
+
+		deathCount = parseInt(document.getElementById('fieldDeathE').value);
+		if ( !deathCount ) deathCount = 1; 
+
+		population = [];
+		popGood = [];
+		popBad = [];
+		popDeath = [];
+
+		window.cancelAnimationFrame(null);
+		delPopulation();
+		new Bacteria().initpop();
+		new badE().initpop();
+		new goodE().initpop();
+		new deathE().initpop();
+
+		if (test){
+		timer();
+		initDraw();
+		}
+		test = 0;
+	}
+	//Функция кнопки х2
+	speed2.onclick = function(){
+		DefSpeed = 2;
+	}
+	//Функция кнопки х1
+	speed1.onclick = function(){
+		DefSpeed = 1;
+	}
+	//Функция кнопки стоп
+	stop.onclick = function() {
+		f = 0;
+		test = 1;
+		clearTimeout(t);
+    	stopDraw();
+	}
+
+	window.onload = init;
+//создание класса бактерия
+	class Bacteria {
+		constructor(x,y, vx,vy, eaten){
+			this.x = x;
+			this.y = y;
+
+			this.radius = DefRad;
+
+			this.vx = vx;
+			this.vy = vy;
+
+			this.eaten = eaten;
+			this.time = 0;
+
+			this.isCollide = false;
+		}
+		initChild(eaten2,x2,y2) {
+
+			let rnd = Math.random()*10+40;
+
+			let xx,yy;
+
+			if (this.x > x2 && this.x + 100 < W){
+				xx = this.x + rnd;
+				yy = this.y;
+			}
+			else{
+				xx = x2 - rnd;
+				yy = y2;
+			}
+
+			if (this.y - 100 > 0)
+				yy -= rnd;
+			else
+				yy += rnd;
+
+			var xV   = parseInt(Math.random()*2);
+			var yV   = parseInt(Math.random()*2);
+
+			xV == 0 ? xV = 1 : xV = -1;
+			yV == 0 ? yV = 1 : yV = -1;
+
+			let h = new Bacteria(xx, yy, xV, yV, (this.eaten + eaten2)/2);
+
+			population.push(h);
+		}
+		initpop(){
+			for (var i=0;i<populationCount;i++) {
+
+				let rndX = Math.random()*(W-60) + 30;
+				let rndY = Math.random()*(H-60) + 30;
+	
+				var xV   = parseInt(Math.random()*2);
+				var yV   = parseInt(Math.random()*2);
+
+				xV == 0 ? xV = 1 : xV = -1;
+				yV == 0 ? yV = 1 : yV = -1;
+
+				let h = new Bacteria(rndX, rndY, xV, yV, 0);
+
+				population.push(h);
+			}
+		}
+	}
+//создание класса хорошая еда
+	class goodE {
+		constructor(x,y){
+			this.x = x;
+			this.y = y;
+
+			this.radius = 8;
+
+			this.isCollide = false;
+		}
+		initpop(){
+		for (var i=0;i<GoodCount;i++) {
+
+			let rndX = Math.random()*(W-60) + 30;
+			let rndY = Math.random()*(H-60) + 30;
+
+			let t = new goodE(rndX, rndY);
+
+			popGood.push(t);
+		}
+	}
+	}
+	//создание класса плохой еды
+	class badE {
+		constructor(x,y){
+			this.x = x;
+			this.y = y;
+
+			this.radius = 8;
+
+			this.isCollide = false;
+		}
+		initpop(){
+		for (var i=0;i<badCount;i++) {
+			
+			let rndX = Math.random()*(W-60) + 30;
+			let rndY = Math.random()*(H-60) + 30;
+
+			let b = new badE(rndX, rndY);
+
+			popBad.push(b);
+		}
+	}
+	}
+	//создание класса смертельной еды
+	class deathE {
+		constructor(x,y){
+			this.x = x;
+			this.y = y;
+
+			this.radius = 8;
+
+			this.isCollide = false;
+		}
+		initpop(){
+		for (var i=0;i<deathCount;i++) {
+
+			let rndX = Math.random()*(W-60) + 30;
+			let rndY = Math.random()*(H-60) + 30;
+
+			let k = new deathE(rndX, rndY);
+
+			popDeath.push(k);
+		}
+		}
+	}
+
+	//Инициализация окна
+	function init() {
+		canvas = document.getElementById("canvas");
+		ctx    = canvas.getContext('2d');
+		W      = canvas.width;
+		H      = canvas.height;		
+	}
+
+	//Тик для таймера
+	function tick(){
+    	sec+=1;
+    	h1.textContent = sec + ' с.';
+    	for (var i=0;i<population.length;i++) {
+    		var h = population[i];
+    		h.time ++;
+    	}
+    	timer();
+	}	
+	//Таймер
+	function timer() {
+    	t = setTimeout(tick, 1000 / DefSpeed);
+	}
+	//Удалить все популяции
+	function delPopulation(){
+		population.splice(0,population.length);
+		popGood.splice(0,popGood.length);
+		popBad.splice(0,popBad.length);
+		popDeath.splice(0,popDeath.length);
+	}
+	
+	//отрисовка, анимация
+	function initDraw() {
+		ctx.clearRect(0,0,W,H);
+		detectCollisions();
+		DetectGB();
+
+		if (!population.length){
+			alert('Естественный отбор закончен, итоговое время = '+sec);
+			stop.onclick();
+		}
+
+		for (var j = 0; j < popGood.length; j++){
+			var t = popGood[j];
+
+			ctx.beginPath();
+			ctx.arc(t.x,t.y,t.radius,0,Math.PI*2, 0);
+			ctx.closePath();
+
+
+			ctx.fillStyle   = 'green';
+			ctx.strokeStyle = 'black';
+			ctx.fill();
+		}
+		
+		for (var j = 0; j < popBad.length; j++){
+			var b = popBad[j];
+
+			ctx.beginPath();
+			ctx.arc(b.x,b.y,b.radius,0,Math.PI*2, 0);
+			ctx.closePath();
+
+			ctx.fillStyle   = 'red';
+			ctx.strokeStyle = 'black';
+			ctx.fill();
+		}
+		for (var j = 0; j < popDeath.length; j++){
+			var k = popDeath[j];
+
+			ctx.beginPath();
+			ctx.arc(k.x,k.y,k.radius,0,Math.PI*2, 0);
+			ctx.closePath();
+
+			ctx.fillStyle   = 'black';
+			ctx.strokeStyle = 'black';
+			ctx.fill();
+		}
+		
+		for (var i = 0; i < population.length; i++) {
+			var h = population[i];
+
+			h.x += DefSpeed * 0.6 * h.vx;
+			h.y += DefSpeed *  0.6 * h.vy;
+
+			if ( h.x-h.radius <= 0 || h.x+h.radius >= W )
+				h.vx = -h.vx;
+		
+			if ( h.y-h.radius <= 0 || h.y+h.radius >= H ) 
+				h.vy = -h.vy;
+
+			ctx.beginPath();
+			ctx.arc(h.x,h.y,h.radius,0, Math.PI*2, 0);
+			ctx.closePath();
+
+			if (h.x - h.radius - 20 > 0 && h.x + h.radius + 20 < W && h.y - h.radius - 20 > 0 && h.y + h.radius + 20 < H){
+				if (h.time >= 5 && h.time < 10)
+					h.radius = DefRad+5;
+				
+				if (h.time >= 10 && h.time < 15)
+					h.radius = DefRad+10;
+
+				if (h.time >= 15 && h.time < 20)
+					h.radius = DefRad+15;
+
+				if (h.time >= 20 && h.time < 25)
+					h.radius = DefRad+20;
+			}
+
+			if (h.eaten <= -10){
+				population.splice(i,1);
+				i--;
+				continue;
+			}
+			if (h.time >= 25){
+				population.splice(i,1);
+				i--;
+				continue;
+			}
+
+			if ( h.eaten > -10 && h.eaten <= -2) {
+				ctx.fillStyle   = 'maroon';
+				ctx.strokeStyle = 'black';
+				ctx.fill();
+			}
+			if ( h.eaten > -1 && h.eaten <= 10) {
+				ctx.fillStyle   = 'white';
+				ctx.strokeStyle = 'black';
+				ctx.stroke();
+			}
+			if ( h.eaten > 10 && h.eaten <= 30) {
+				ctx.fillStyle   = 'LightBlue';
+				ctx.strokeStyle = 'black';
+				ctx.fill();
+			}
+			if ( h.eaten > 30 && h.eaten <= 50) {
+				ctx.fillStyle   = 'DodgerBlue';
+				ctx.strokeStyle = 'black';
+				ctx.fill();
+			}
+			if ( h.eaten > 50 && h.eaten <= 75) {
+				ctx.fillStyle   = 'MediumSlateBlue';
+				ctx.strokeStyle = 'black';
+				ctx.fill();
+			}
+			if ( h.eaten > 75) {
+				ctx.fillStyle   = 'MediumBlue';
+				ctx.strokeStyle = 'black';
+				ctx.fill();
+			}
+		}
+		if (f)
+		window.requestAnimationFrame(initDraw);
+
+	}
+	//Очистка поля
+	function stopDraw(){
+		ctx.clearRect(0,0,W,H);
+	}
+
+	//Столкновение с обстоятельствами
+	function DetectGB(){
+		var h, t, b;
+
+		for (var i=0; i < population.length; i++){
+			population[i].isCollide = false;
+		}
+		for (var i=0; i < popGood.length; i++){
+			popGood[i].isCollide = false;
+		}
+		for (var i=0; i < popBad.length; i++){
+			popBad[i].isCollide = false;
+		}
+		for (var i=0; i < popDeath.length; i++){
+			popDeath[i].isCollide = false;
+		}
+
+		for ( var i=0;i<population.length;i++ ) {
+			h = population[i];
+			
+			for ( var j=0;j<popGood.length;j++ ) {
+				t = popGood[j];
+
+				let dx = h.x-t.x;
+				let dy = h.y-t.y;
+				let distance = Math.sqrt(dx*dx+dy*dy);
+
+				if ( distance < h.radius + t.radius ) {
+					h.eaten += 5;
+					t.x = Math.random()*(W-60) + 30;
+					t.y = Math.random()*(H-60) + 30;
+				}
+			}	
+			for ( var j=0;j<popBad.length;j++ ) {
+				b = popBad[j];
+
+				let bdx = h.x-b.x;
+				let bdy = h.y-b.y;
+				let bdistance = Math.sqrt(bdx*bdx+bdy*bdy);
+
+				if ( bdistance < h.radius + b.radius ) {
+					h.eaten -= 5;
+					b.x = Math.random()*(W-60) + 30;
+					b.y = Math.random()*(H-60) + 30;
+				}
+			}
+			for ( var j=0;j<popDeath.length;j++ ) {
+				k = popDeath[j];
+
+				let kdx = h.x-k.x;
+				let kdy = h.y-k.y;
+				let kdistance = Math.sqrt(kdx*kdx+kdy*kdy);
+
+				if ( kdistance < h.radius + k.radius ) {
+					h.eaten -= 1000;
+					k.x = Math.random()*(W-60) + 30;
+					k.y = Math.random()*(H-60) + 30;
+				}
+			}
+			
+		}
+	}
+	//Столкновение людей
+	function detectCollisions() 
+	{
+		var h1, h2;
+
+		for ( var i=0;i<population.length;i++ ) {
+			population[i].isCollide = false;
+		}
+
+		for ( var i=0;i<population.length;i++ ) {
+			h1 = population[i];
+			
+			for ( var j=i+1;j<population.length;j++ ) {
+				h2 = population[j];
+
+				let dx = h1.x-h2.x;
+				let dy = h1.y-h2.y;
+				let distance = Math.sqrt(dx*dx+dy*dy);
+
+				if ( distance < h1.radius + h2.radius){
+
+					let srX = (h1.x+h2.x)/2;
+					let srY = (h1.y+h2.y)/2;
+
+					if (srX < OldX - 20 || srX > OldX + 20 || srY < OldY - 20 || srY > OldY + 20){
+					//Передача опыта
+					let hh = h1.eaten;
+
+					if (h1.time >= 1 && h2.time >= 1){
+						if (h1.eaten * h2.eaten >= 0){ //Если одного знака
+							if(Math.abs(h2.eaten) > Math.abs(h1.eaten))
+								if(Math.abs(h1.eaten) + Math.abs(h2.eaten)/10 <= 100 && Math.abs(h1.eaten) + Math.abs(h2.eaten)/10 <= Math.abs(h2.eaten))
+								{
+									h1.eaten +=5;
+									h2.eaten -=5;
+								}
+							else{
+								if (Math.abs(h2.eaten) + Math.abs(h1.eaten)/10 <= 100 && Math.abs(h2.eaten) + Math.abs(h1.eaten)/10 <= Math.abs(h2.eaten))
+								{
+									h2.eaten += 5;
+									h1.eaten =5;
+								}
+							}
+						}
+						else{
+							h1.eaten += 5;
+							h2.eaten += 5;
+						}
+					}
+
+0					//Появление потомка
+					let rndRod = Math.random()*100;
+
+					if (((h1.time >= 11 && h1.time < 15 && h2.time >= 11 && h2.time < 15) || (h1.time >= 16 && h1.time < 20 && h2.time >= 16 && h2.time < 20)) && population.length <= popLimit && rndRod <= 90){
+						h1.initChild(h2.eaten,h2.x,h2.y);
+					}
+				}
+
+					OldX = srX;
+					OldY = srY;
+
+					h1.isCollide = true;
+					h2.isCollide = true;
+
+					let collision = {
+						x: h2.x-h1.x,
+						y: h2.y-h1.y
+					};
+
+					let collisionNormal = {
+						x: collision.x / distance,
+						y: collision.y / distance
+					};
+
+					let relV = {
+						x: h1.vx-h2.vx,
+						y: h1.vy-h2.vy
+					};
+
+					let speedV = relV.x*collisionNormal.x+relV.y*collisionNormal.y;
+
+					if ( speedV < 0 ) 
+						break;
+
+					h1.vx -= speedV*collisionNormal.x;
+					h1.vy -= speedV*collisionNormal.y; 
+
+					h2.vx += speedV*collisionNormal.x;
+					h2.vy += speedV*collisionNormal.y;
+
+					if ( Math.abs(h1.vx) < 0.5 ) {
+						if ( h1.vx < 0 ) {
+							h1.vx = -1;
+						}
+						else {
+							h1.vx = 1;
+						}
+					}
+					if ( Math.abs(h1.vy) < 0.5 ) {
+						if ( h1.vy < 0 ) {
+							h1.vy = -1;
+						}
+						else {
+							h1.vy = 1;
+						}
+					}
+
+
+					if ( Math.abs(h2.vx) < 0.5 ) {
+						if ( h2.vx < 0 ) {
+							h2.vx = -1;
+						}
+						else {
+							h2.vx = 1;
+						}
+					}
+					if ( Math.abs(h2.vy) < 0.5 ) {
+						if ( h2.vy < 0 ) {
+							h2.vy = -1;
+						}
+						else {
+							h2.vy = 1;
+						}
+					}
+				}
+			}
+		} 
+	}
+
+</script>
+ </html>
+ 
+
+
+
