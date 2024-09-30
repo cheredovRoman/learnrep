@@ -1,0 +1,101 @@
+number_A			DCD		2
+number_B			DCD		2
+number_C			DCD		2
+number_D			DCD		0
+result			DCD		2
+				LDR		R0, =number_A
+				LDR		R1,[R0,#0]
+				LDR		R0, =number_B
+				LDR		R2,[R0,#0]
+				BL		umn
+				MOV		R5,R3
+				mov		r6,r3
+				LDR		R0, =number_C
+				LDR		R1,[R0,#0]
+				ldr		r8,=0
+				CMP		R1,R8
+				Beq		exit
+				mov		r2,r5
+				bl		umn
+				mov		r5,r3
+				ldr		r0,=number_D
+				ldr		r2,[R0,#0]
+				CMP		R2,R8
+				Beq		exit
+				mov		r1,r5
+				bl		div
+				mov		r5,r3
+				b		exit1
+exit				ldr		r0,=result
+				str		R5,[R0,#0]
+				end
+exit1
+				ldr		r0,=result
+				str		R6,[R0,#0]
+				end
+				
+umn
+				ldr		r3,=0
+				ldr		r0,=0
+				ldr		r4,=1
+				cmp		r1,r0
+				cmpmi	r2,r0
+				bmi		a_and_b_negativ
+loop				cmp		r2,r0
+				addpl	r3,r3,r1
+				subpl	r2,r2,r4
+				submi	r3,r3,r1
+				addmi	r2,r2,r4
+				cmp		r2,r0
+				bne		loop
+out				mov		pc,lr
+a_and_b_negativ
+				add		r3,r3,r1
+				add		r2,r2,r4
+				cmp		r2,r0
+				bne		a_and_b_negativ
+				b		out
+div
+				LDR		R3,=0
+				LDR		R0,=0
+				LDR		R4,=1
+				CMP		R1,R0
+				CMPMI	R2,R0
+				BMI		negativ_A_and_B
+				CMP		R1,R0
+				BMI		negativ_A
+				CMP		R2,R0
+				BMI		negativ_B
+positive
+				SUB		R1,R1,R2
+				ADD		R3,R3,R4
+				CMP		R1,R2
+				BPL		positive
+				CMP		R1,R0
+				SUBNE	R3,R3,R4
+				B		out
+negativ_A
+				ADD		R1,R1,R2
+				SUB		R3,R3,R4
+				CMP		R1,R0
+				BMI		negativ_A
+				CMP		R1,R0
+				ADDNE	R3,R3,R4
+				B		out
+negativ_B
+				ADD		R1,R1,R2
+				SUB		R3,R3,R4
+				CMP		R1,R0
+				BPL		negativ_B
+				CMP		R1,R0
+				ADDNE	R3,R3,R4
+				B		out
+negativ_A_and_B
+				SUB		R1,R1,R2
+				ADD		R3,R3,R4
+				CMP		R1,R0
+				BMI		negativ_A_and_B
+				CMP		R1,R0
+				SUBNE	R3,R3,R4
+				B		out
+				

@@ -1,0 +1,52 @@
+_a		equ		2
+_n		equ		3
+_array	dcd		1,2,3
+_index	equ		8
+		ldr		r0,=_array
+		ldr		r2,=_a
+		ldr		r3,=_n
+		ldr		r4,=_index
+cycl		mov		r10,r3
+			mov		r9,r2
+			mov		r12,#0
+			bl		umn
+			ldr		r1,[r0,#4]!
+			add		r11,r11,r1
+			add		r12,r12,r11
+			bl		step
+			mov		r12,r11
+			bl		div
+			add		r13,r13,r11
+			sub		r3,r3,#1
+			cmp		r3,#0
+			bne		cycl
+		str		R13,[R0,#0]
+		end
+		
+umn		mov		r11,#0
+loop		add		r11,r11,r2
+		sub		r10,r10,#1
+		cmp		r10,#0
+		bne		loop
+		mov		pc,lr
+		
+step		mov		r11,#0
+		mov		r10,r3
+cycle1	sub		r10,r10,#1
+		mov		r7,r12
+loop1	add		r11,r11,r12
+		sub		r7,r7,#1
+		cmp		r7,#0
+		bne		loop1
+		cmp		r10,#0
+		bne		cycle1
+		mov		pc,lr
+		
+div		mov		r11,#0
+		mov		r10,r3
+loop2	sub		r12,r12,r10
+		add		r11,r11,#1
+		cmp		r12,#0
+		bne		loop2
+		mov		pc,lr
+		

@@ -1,0 +1,28 @@
+.data
+A: .byte 2
+B: .byte 2
+N: .byte 2
+result: .space 1 
+.code
+addi r1,r1,A	; A -> r1
+lb r1,A(r0)	; A -> r1
+addi r2,r2,B	; B -> r2
+lb r2,B(r0)	; B -> r2
+addi r3,r3,N	; N -> r3
+lb r3,N(r0)	; N -> r3
+addi r8,r8,1	; 1 -> r8
+
+CYCL: 		; Начало цикла
+addi r5,r5,1	; r5 + 1 = r5 (Номер прохода)
+DMULT r1,r5	; r1*r5 = LO (A*I)
+MFLO r6		; LO -> r6
+DMULT r2,r5	; r1*r5 = LO (B*I) 
+MFLO r7		; LO -> r7
+ADD r6,r6,r7	; r6+r7 = r6 (A*I + B*I)
+
+DSUB r3,r3,r8	; r3 - 1 = r3 (Счётчик цикла)
+ADD r4,r4,r6	; r4+r6 = r4 
+BNEZ  r3,CYCL	; Замкнуть цикл по метке CYCL
+
+exit: sw r4, result(r0); Сохранить результат в переменную result
+SYSCALL 0

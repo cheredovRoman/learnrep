@@ -1,0 +1,46 @@
+number_A			DCD		-2
+number_B			DCD		2
+number_C			DCD		2
+number_D			DCD		2
+result			DCD		2
+				LDR		R0,=number_A
+				LDR		R1,[R0,#0]
+				LDR		R0,=number_B
+				LDR		R2,[R0,#0]
+				BL		umn
+				MOV		R5,R3
+				LDR		R0,=number_C
+				LDR		R1,[R0,#0]
+				MOV		R2,R1
+				BL		umn
+				LDR		R0,=number_B
+				LDR		R1,[R0,#0]
+				SUB		R3,R3,R1
+				ADD		R3,R3,R5
+				LDR		R0,=result
+				STR		R3,[R0,#0]
+				end
+				;
+				;
+				;
+umn
+				ldr		r3,=0
+				ldr		r0,=0
+				ldr		r4,=1
+				cmp		r1,r0
+				cmpmi	r2,r0
+				bmi		a_and_b_negativ
+loop				cmp		r2,r0
+				addpl	r3,r3,r1
+				subpl	r2,r2,r4
+				submi	r3,r3,r1
+				addmi	r2,r2,r4
+				cmp		r2,r0
+				bne		loop
+out				mov		pc,lr
+a_and_b_negativ
+				add		r3,r3,r1
+				add		r2,r2,r4
+				cmp		r2,r0
+				bne		a_and_b_negativ
+				b		out

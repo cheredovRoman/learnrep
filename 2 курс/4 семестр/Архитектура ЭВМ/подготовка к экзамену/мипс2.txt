@@ -1,0 +1,28 @@
+ (A[1] + B[1]) + (A[2]^2 +B[2]^2) + ... + (A[n]^n + B[n]^n) на мипс
+.data;
+a:.byte 8,7,6,5,4,3,2,1;
+b:.byte 1,2,3,4,5,6,7,8;
+arrSize:.byte 2;
+result :.space 1;
+.code;
+addi r2,r2,arrSize; r2= r2+ адресс переменной(arrSize)
+lb r2,arrSize(r0); загружаем в ячейку со смещением ноль
+cycl1:
+	lb r3,a(r1);
+	lb r4,b(r1);
+addi r1,r1,1;r1=r1+1
+movz r5,r1,r0;r5=r1
+movz r6,r0,r0;r6=r0	
+addi r6,r6,1;r6=r6+1
+	cycl2:начало цикла
+	dmult r6,r3;перемножить r6*r3,результат в lo
+	MFLO r7;из lo в r7
+	dmult r6,r3;перемножить r6*r3,результат в lo
+	MFLO r8;из lo в r8
+	addi r5,r5,-1; r5=r5+(-1)
+	bne  r5,r0,cycl2; r5 сравниваем с r0, если нет то переходим на цикл
+	add r12,r12,r7;r12=r12+r7
+	add r12,r12,r8;r12=r12+r8
+	bne r1,r2,cycl1;r1 сравниваем с r2, если нет то переходим на цикл
+	sw r12,result(r0);запись из р12 в результат
+syscall 0; конец

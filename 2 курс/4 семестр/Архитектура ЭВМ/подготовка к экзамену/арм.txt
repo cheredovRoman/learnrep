@@ -1,0 +1,26 @@
+(n!+(n-1)!+(n-2)!+...+(n-n)!)! на arm
+Number	DCD		3	;Число =3(n)
+result	DCD		0	;Результат=0
+		LDR		R9, =Number; адресс n=r9 
+		LDR		R9,[R9,#0];N->R9
+		
+cycl		mov		r10,r9;начало цикла, r9->r10
+		bl		fact;переход в подпрограмму fact
+		add		r12,r12,r11;r12=r11+r12
+		sub		r9,r9,#1;r9=r9-1
+		cmp		r9,r0;r9=r0?
+		bne		cycl;; Замкнуть цикл если R9 не равно R0
+		
+		mov		r10,r12;r12=r10
+		bl		fact;переход в подпрограмму fact
+		LDR		r1,=result;r1=result
+		str		R11,[R1,#0];r11->result
+		end
+		
+		;		r10! = r11
+fact		mov		r11,#0;r11=0
+loop		add		r11,r11,r10;r11=r11+r10
+		sub		r10,r10,#1;r10=r10-1
+		cmp		r10,r0;r10=r0?
+		bne		loop; Замкнуть цикл если R10 не равно R0
+		mov		pc,lr;Выход из подпрограммы

@@ -1,0 +1,25 @@
+.data
+a: .byte 3
+b: .byte 3
+c: .byte 2
+d: .byte 2
+result: .space 1 
+.code
+addi r1,r1,a	; a -> r1
+lb r1,a(r0)	; a -> r1
+addi r2,r2,b	; b -> r1
+lb r2,b(r0)	; b -> r1
+DMULT r1,r2	; r1*r2 = LO (a*b)
+MFLO r3		; LO -> r3
+addi r1,r1,c	; c -> r1
+lb r1,c(r0)	; c -> r1
+movz r2,r1,r0	; r1 -> r2 (Копируем значение)
+DMULT r1,r2	; r1*r2 = LO (c^2)
+MFLO r1		; LO -> r1
+addi r2,r2,d	; d -> r2
+lb r2,d(r0)	; d -> r2
+SUB r1,r1,r2	; r1-r2 = r1 (c^2-d)
+add r1,r1,r3	; r1 + r3 = r1 (a*b + c^2-d)
+sw r1, result(r0); Сохранить результат в переменную result
+SYSCALL 0
+
