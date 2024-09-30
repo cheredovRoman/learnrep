@@ -1,0 +1,11 @@
+void main(){
+	float a = 0.99;//comment 1
+	const int b = 5;
+	char word[5] = "prtiv";//{'P','R','I','V','E', 'T'}
+	string str = "WoRlD";
+	do
+	{
+	a = 1 + 2 - 3 * 4 % 2 / 6; //Comment 2
+	}while(a < 1);
+//...program...
+}

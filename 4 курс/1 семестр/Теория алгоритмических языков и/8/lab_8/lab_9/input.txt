@@ -1,0 +1,22 @@
+class MyClass{
+int xperem;
+int hperem;
+short int y = 5;
+};
+int main(){
+int h;
+const double Prim = 2;
+int a1,a2;
+short int a3= 4+5;
+h=5;
+MyClass cl;
+cl.hperem = 2;
+short int a4 = a3+ cl.xperem;
+int i =0;
+do{
+a1=h>>i;
+i=i+1;
+}
+while(i<10);
+return 0;
+}

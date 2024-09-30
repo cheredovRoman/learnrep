@@ -1,0 +1,11 @@
+long int con[2] = {234, (234 + 51 - 63 * (3/3))};
+char str = 'f';
+
+void main(){
+	char y[0xff] = {'3','6','9'};
+	if ((((y))) > (26 - 13)) {
+		functA();
+		{{{}}}
+	} else 
+
+}

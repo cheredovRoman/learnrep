@@ -1,0 +1,16 @@
+D:\Учеба\4 курс\2 семестр\Проектирование человека-машинных интерфейсов\3 lab\3 lab\3 lab\bin\Debug\net6.0-windows\3 lab.exe
+D:\Учеба\4 курс\2 семестр\Проектирование человека-машинных интерфейсов\3 lab\3 lab\3 lab\bin\Debug\net6.0-windows\3 lab.deps.json
+D:\Учеба\4 курс\2 семестр\Проектирование человека-машинных интерфейсов\3 lab\3 lab\3 lab\bin\Debug\net6.0-windows\3 lab.runtimeconfig.json
+D:\Учеба\4 курс\2 семестр\Проектирование человека-машинных интерфейсов\3 lab\3 lab\3 lab\bin\Debug\net6.0-windows\3 lab.dll
+D:\Учеба\4 курс\2 семестр\Проектирование человека-машинных интерфейсов\3 lab\3 lab\3 lab\bin\Debug\net6.0-windows\3 lab.pdb
+D:\Учеба\4 курс\2 семестр\Проектирование человека-машинных интерфейсов\3 lab\3 lab\3 lab\obj\Debug\net6.0-windows\_3_lab.Form1.resources
+D:\Учеба\4 курс\2 семестр\Проектирование человека-машинных интерфейсов\3 lab\3 lab\3 lab\obj\Debug\net6.0-windows\3 lab.csproj.GenerateResource.cache
+D:\Учеба\4 курс\2 семестр\Проектирование человека-машинных интерфейсов\3 lab\3 lab\3 lab\obj\Debug\net6.0-windows\3 lab.GeneratedMSBuildEditorConfig.editorconfig
+D:\Учеба\4 курс\2 семестр\Проектирование человека-машинных интерфейсов\3 lab\3 lab\3 lab\obj\Debug\net6.0-windows\3 lab.AssemblyInfoInputs.cache
+D:\Учеба\4 курс\2 семестр\Проектирование человека-машинных интерфейсов\3 lab\3 lab\3 lab\obj\Debug\net6.0-windows\3 lab.AssemblyInfo.cs
+D:\Учеба\4 курс\2 семестр\Проектирование человека-машинных интерфейсов\3 lab\3 lab\3 lab\obj\Debug\net6.0-windows\3 lab.csproj.CoreCompileInputs.cache
+D:\Учеба\4 курс\2 семестр\Проектирование человека-машинных интерфейсов\3 lab\3 lab\3 lab\obj\Debug\net6.0-windows\3 lab.dll
+D:\Учеба\4 курс\2 семестр\Проектирование человека-машинных интерфейсов\3 lab\3 lab\3 lab\obj\Debug\net6.0-windows\refint\3 lab.dll
+D:\Учеба\4 курс\2 семестр\Проектирование человека-машинных интерфейсов\3 lab\3 lab\3 lab\obj\Debug\net6.0-windows\3 lab.pdb
+D:\Учеба\4 курс\2 семестр\Проектирование человека-машинных интерфейсов\3 lab\3 lab\3 lab\obj\Debug\net6.0-windows\3 lab.genruntimeconfig.cache
+D:\Учеба\4 курс\2 семестр\Проектирование человека-машинных интерфейсов\3 lab\3 lab\3 lab\obj\Debug\net6.0-windows\ref\3 lab.dll

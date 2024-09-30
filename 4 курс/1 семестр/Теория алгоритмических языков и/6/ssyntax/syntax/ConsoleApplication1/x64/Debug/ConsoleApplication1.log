@@ -1,0 +1,5 @@
+﻿  Diagram.cpp
+D:\Учеба\4 курс\1 семестр\Теория алгоритмических языков и\6\ssyntax\syntax\ConsoleApplication1\Diagram.cpp(151,9): warning C4101: uk1: неиспользованная локальная переменная
+D:\Учеба\4 курс\1 семестр\Теория алгоритмических языков и\6\ssyntax\syntax\ConsoleApplication1\Diagram.cpp(168,9): warning C4101: uk1: неиспользованная локальная переменная
+D:\Учеба\4 курс\1 семестр\Теория алгоритмических языков и\6\ssyntax\syntax\ConsoleApplication1\Diagram.cpp(185,9): warning C4101: t1: неиспользованная локальная переменная
+  ConsoleApplication1.vcxproj -> D:\Учеба\4 курс\1 семестр\Теория алгоритмических языков и\6\ssyntax\syntax\x64\Debug\ConsoleApplication1.exe

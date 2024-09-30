@@ -1,0 +1,17 @@
+class MyOwnClass{
+int x;
+};
+class MyOwnClass{
+int x;
+};
+int main(){
+int i = 0;
+short int a1 = 2;
+int a2 = 4;
+return 0;
+do
+{
+y = 1;
+x=2;}
+ while ( x > 0 );
+}

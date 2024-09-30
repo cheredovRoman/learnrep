@@ -1,0 +1,3 @@
+class MyOwnClass{
+double x =3(Пропущена точка с запятой)
+int a =2;};

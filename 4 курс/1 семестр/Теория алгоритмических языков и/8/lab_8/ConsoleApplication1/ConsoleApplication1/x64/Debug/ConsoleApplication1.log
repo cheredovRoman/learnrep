@@ -1,0 +1,10 @@
+﻿  ConsoleApplication1.cpp
+  Diagram.cpp
+D:\Учеба\4 курс\1 семестр\Теория алгоритмических языков и\8\lab_8\ConsoleApplication1\ConsoleApplication1\Diagram.cpp(279,9): warning C4101: uk1: неиспользованная локальная переменная
+D:\Учеба\4 курс\1 семестр\Теория алгоритмических языков и\8\lab_8\ConsoleApplication1\ConsoleApplication1\Diagram.cpp(298,9): warning C4101: uk1: неиспользованная локальная переменная
+D:\Учеба\4 курс\1 семестр\Теория алгоритмических языков и\8\lab_8\ConsoleApplication1\ConsoleApplication1\Diagram.cpp(311,9): warning C4101: t1: неиспользованная локальная переменная
+  Semant.cpp
+  Three.cpp
+  Создание кода...
+D:\Учеба\4 курс\1 семестр\Теория алгоритмических языков и\8\lab_8\ConsoleApplication1\ConsoleApplication1\Semant.cpp(106): warning C4715: Tree::GetTypeResult: значение возвращается не при всех путях выполнения
+  ConsoleApplication1.vcxproj -> D:\Учеба\4 курс\1 семестр\Теория алгоритмических языков и\8\lab_8\ConsoleApplication1\x64\Debug\ConsoleApplication1.exe

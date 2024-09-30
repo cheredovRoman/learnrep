@@ -1,0 +1,13 @@
+D:\Учеба\4 курс\2 семестр\Проектирование человека-машинных интерфейсов\3 lab\last\last\bin\Debug\last.exe.config
+D:\Учеба\4 курс\2 семестр\Проектирование человека-машинных интерфейсов\3 lab\last\last\bin\Debug\last.exe
+D:\Учеба\4 курс\2 семестр\Проектирование человека-машинных интерфейсов\3 lab\last\last\bin\Debug\last.pdb
+D:\Учеба\4 курс\2 семестр\Проектирование человека-машинных интерфейсов\3 lab\last\last\obj\Debug\last.csproj.AssemblyReference.cache
+D:\Учеба\4 курс\2 семестр\Проектирование человека-машинных интерфейсов\3 lab\last\last\obj\Debug\last.MainForm.resources
+D:\Учеба\4 курс\2 семестр\Проектирование человека-машинных интерфейсов\3 lab\last\last\obj\Debug\last.Properties.Resources.resources
+D:\Учеба\4 курс\2 семестр\Проектирование человека-машинных интерфейсов\3 lab\last\last\obj\Debug\last.csproj.GenerateResource.cache
+D:\Учеба\4 курс\2 семестр\Проектирование человека-машинных интерфейсов\3 lab\last\last\obj\Debug\last.csproj.CoreCompileInputs.cache
+D:\Учеба\4 курс\2 семестр\Проектирование человека-машинных интерфейсов\3 lab\last\last\obj\Debug\last.exe
+D:\Учеба\4 курс\2 семестр\Проектирование человека-машинных интерфейсов\3 lab\last\last\obj\Debug\last.pdb
+D:\Учеба\4 курс\2 семестр\Проектирование человека-машинных интерфейсов\3 lab\last\last\bin\Debug\Spire.XLS.dll
+D:\Учеба\4 курс\2 семестр\Проектирование человека-машинных интерфейсов\3 lab\last\last\bin\Debug\Spire.XLS.xml
+D:\Учеба\4 курс\2 семестр\Проектирование человека-машинных интерфейсов\3 lab\last\last\obj\Debug\last.csproj.CopyComplete
