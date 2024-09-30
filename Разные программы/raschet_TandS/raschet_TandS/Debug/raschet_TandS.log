@@ -1,0 +1,4 @@
+﻿  raschet_TandS.cpp
+C:\Users\79061\source\repos\raschet_TandS\raschet_TandS\raschet_TandS.cpp(104): warning C4715: Sravn: значение возвращается не при всех путях выполнения
+C:\Users\79061\source\repos\raschet_TandS\raschet_TandS\raschet_TandS.cpp(91): warning C4715: Nach: значение возвращается не при всех путях выполнения
+  raschet_TandS.vcxproj -> C:\Users\79061\source\repos\raschet_TandS\Debug\raschet_TandS.exe

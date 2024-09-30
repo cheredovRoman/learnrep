@@ -1,0 +1,3 @@
+C:\Users\79061\source\repos\ConsoleApp2\ConsoleApp2\obj\Release\netcoreapp3.1\ConsoleApp2.AssemblyInfoInputs.cache
+C:\Users\79061\source\repos\ConsoleApp2\ConsoleApp2\obj\Release\netcoreapp3.1\ConsoleApp2.AssemblyInfo.cs
+C:\Users\79061\source\repos\ConsoleApp2\ConsoleApp2\obj\Release\netcoreapp3.1\ConsoleApp2.csproj.CoreCompileInputs.cache

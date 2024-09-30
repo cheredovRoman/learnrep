@@ -1,0 +1,3 @@
+﻿  ConsoleApplication3.cpp
+ConsoleApplication3.obj : error LNK2019: ссылка на неразрешенный внешний символ "public: __thiscall Device::~Device(void)" (??1Device@@QAE@XZ) в функции __unwindfunclet$??0Pager@@QAE@XZ$0.
+C:\Users\79061\source\repos\ConsoleApplication3\Debug\ConsoleApplication3.exe : fatal error LNK1120: неразрешенных внешних элементов: 1

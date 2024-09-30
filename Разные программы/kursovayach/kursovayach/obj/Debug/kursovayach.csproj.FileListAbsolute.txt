@@ -1,0 +1,14 @@
+C:\Users\79061\source\repos\kursovayach\kursovayach\bin\Debug\kursovayach.exe.config
+C:\Users\79061\source\repos\kursovayach\kursovayach\bin\Debug\kursovayach.exe
+C:\Users\79061\source\repos\kursovayach\kursovayach\bin\Debug\kursovayach.pdb
+C:\Users\79061\source\repos\kursovayach\kursovayach\obj\Debug\kursovayach.csproj.AssemblyReference.cache
+C:\Users\79061\source\repos\kursovayach\kursovayach\obj\Debug\kursovayach.delopr.resources
+C:\Users\79061\source\repos\kursovayach\kursovayach\obj\Debug\kursovayach.docpanel.resources
+C:\Users\79061\source\repos\kursovayach\kursovayach\obj\Debug\kursovayach.docpaneldo.resources
+C:\Users\79061\source\repos\kursovayach\kursovayach\obj\Debug\kursovayach.Form1.resources
+C:\Users\79061\source\repos\kursovayach\kursovayach\obj\Debug\kursovayach.patientauth.resources
+C:\Users\79061\source\repos\kursovayach\kursovayach\obj\Debug\kursovayach.Properties.Resources.resources
+C:\Users\79061\source\repos\kursovayach\kursovayach\obj\Debug\kursovayach.csproj.GenerateResource.cache
+C:\Users\79061\source\repos\kursovayach\kursovayach\obj\Debug\kursovayach.csproj.CoreCompileInputs.cache
+C:\Users\79061\source\repos\kursovayach\kursovayach\obj\Debug\kursovayach.exe
+C:\Users\79061\source\repos\kursovayach\kursovayach\obj\Debug\kursovayach.pdb

@@ -1,0 +1,13 @@
+C:\Users\79061\source\repos\kursovaya\kursovaya\bin\Debug\kursovaya.exe.config
+C:\Users\79061\source\repos\kursovaya\kursovaya\bin\Debug\kursovaya.exe
+C:\Users\79061\source\repos\kursovaya\kursovaya\bin\Debug\kursovaya.pdb
+C:\Users\79061\source\repos\kursovaya\kursovaya\obj\Debug\kursovaya.csproj.AssemblyReference.cache
+C:\Users\79061\source\repos\kursovaya\kursovaya\obj\Debug\kursovaya.docauth.resources
+C:\Users\79061\source\repos\kursovaya\kursovaya\obj\Debug\kursovaya.docpanel.resources
+C:\Users\79061\source\repos\kursovaya\kursovaya\obj\Debug\kursovaya.auth.resources
+C:\Users\79061\source\repos\kursovaya\kursovaya\obj\Debug\kursovaya.op.resources
+C:\Users\79061\source\repos\kursovaya\kursovaya\obj\Debug\kursovaya.Properties.Resources.resources
+C:\Users\79061\source\repos\kursovaya\kursovaya\obj\Debug\kursovaya.csproj.GenerateResource.cache
+C:\Users\79061\source\repos\kursovaya\kursovaya\obj\Debug\kursovaya.csproj.CoreCompileInputs.cache
+C:\Users\79061\source\repos\kursovaya\kursovaya\obj\Debug\kursovaya.exe
+C:\Users\79061\source\repos\kursovaya\kursovaya\obj\Debug\kursovaya.pdb

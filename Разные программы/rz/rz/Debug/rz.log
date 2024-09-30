@@ -1,0 +1,4 @@
+﻿  rz.cpp
+C:\Users\79061\source\repos\rz\rz\rz.cpp(64): warning C4715: Nach: значение возвращается не при всех путях выполнения
+C:\Users\79061\source\repos\rz\rz\rz.cpp(77): warning C4715: Sravn: значение возвращается не при всех путях выполнения
+  rz.vcxproj -> C:\Users\79061\source\repos\rz\Debug\rz.exe

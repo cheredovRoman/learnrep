@@ -1,0 +1,6 @@
+﻿  tandsdlab3_1.cpp
+C:\Users\79061\source\repos\tandsdlab3_1\tandsdlab3_1\tandsdlab3_1.cpp(65,27): warning C4018: <: несоответствие типов со знаком и без знака
+C:\Users\79061\source\repos\tandsdlab3_1\tandsdlab3_1\tandsdlab3_1.cpp(142,31): warning C4018: <: несоответствие типов со знаком и без знака
+C:\Users\79061\source\repos\tandsdlab3_1\tandsdlab3_1\tandsdlab3_1.cpp(161,23): warning C4018: <: несоответствие типов со знаком и без знака
+C:\Users\79061\source\repos\tandsdlab3_1\tandsdlab3_1\tandsdlab3_1.cpp(191,19): warning C4129: : неизвестная escape-последовательность
+  tandsdlab3_1.vcxproj -> C:\Users\79061\source\repos\tandsdlab3_1\Debug\tandsdlab3_1.exe
